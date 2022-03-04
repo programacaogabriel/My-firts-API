@@ -2,6 +2,7 @@ package br.com.gabrielmartinsdasilva.MyAPI.services;
 
 import java.util.Optional;
 
+import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +19,6 @@ public class UsuarioService {
 	public Usuario findById(Integer id) {
 		
 		Optional<Usuario> obj = repository.findById(id);
-		return obj.orElse(null);
-	}
+		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado ! ID: "+id+"TIPO: "+Usuario.class.getName(), null));
+		}
 }
