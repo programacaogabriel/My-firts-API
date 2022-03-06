@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import br.com.gabrielmartinsdasilva.MyAPI.domain.Usuario;
@@ -38,5 +39,11 @@ public class UsuarioService {
 	public Usuario create(Usuario obj) {
 		obj.setId(null);
 		return repository.save(obj);
+	}
+
+	public ResponseEntity<Object> delete(Integer id) {
+		findById(id);
+		repository.deleteById(id);
+		return ResponseEntity.noContent().build();
 	}
 }
