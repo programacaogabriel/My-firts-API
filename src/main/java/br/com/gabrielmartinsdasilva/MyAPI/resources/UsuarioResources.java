@@ -1,5 +1,8 @@
 package br.com.gabrielmartinsdasilva.MyAPI.resources;
 
+import java.net.URI;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,6 +11,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.com.gabrielmartinsdasilva.MyAPI.domain.Usuario;
 import br.com.gabrielmartinsdasilva.MyAPI.services.UsuarioService;
@@ -35,5 +39,11 @@ public class UsuarioResources {
 	public ResponseEntity<Usuario> update(@PathVariable Integer id, @RequestBody Usuario obj) {
 		Usuario newObj = service.update(id, obj);
 		return ResponseEntity.ok(newObj);
+	}
+	
+	public ResponseEntity<Usuario>create(@RequestBody Usuario obj){
+		Usuario newObj = service.create(obj);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newObj.getId()).toUri();
+		return ResponseEntity.created(uri).build();
 	}
 }
