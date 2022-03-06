@@ -1,5 +1,6 @@
 package br.com.gabrielmartinsdasilva.MyAPI.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.hibernate.ObjectNotFoundException;
@@ -21,4 +22,9 @@ public class UsuarioService {
 		Optional<Usuario> obj = repository.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado ! ID: "+id+"TIPO: "+Usuario.class.getName(), null));
 		}
+
+
+	public List<Usuario> findAll() {
+		return repository.findAll();
+	}
 }

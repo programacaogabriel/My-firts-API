@@ -24,4 +24,9 @@ public class UsuarioResources {
 				return ResponseEntity .ok().body(obj);
 	}
 	
+	@GetMapping
+	public ResponseEntity<java.util.List<Usuario>> findAll(){
+		java.util.List<Usuario> list =service.findAll();
+		return ResponseEntity.ok().body(list);
+	}
 }
