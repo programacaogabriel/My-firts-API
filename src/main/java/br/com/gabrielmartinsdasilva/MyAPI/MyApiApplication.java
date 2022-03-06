@@ -23,7 +23,7 @@ public class MyApiApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-	Usuario u1 = new Usuario(null, "Gabriel M", "Gabriel", "123");
+	Usuario u1 = new Usuario(null, "Gabriel F", "Gabriel", "123");
 	Usuario u2 = new Usuario(null, "Juninho F","Juninho","321");
 	
 	
